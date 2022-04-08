@@ -1,6 +1,7 @@
 import 'package:dudedelivery/post/convert.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'constants.dart';
 import 'models/delivery.dart';
 
 class Shipments extends StatefulWidget {
@@ -16,31 +17,47 @@ class _ShipmentsState extends State<Shipments> {
   @override
   void initState() {
     super.initState();
-   // futureDelivery = fetchDelivery();
+    // futureDelivery = fetchDelivery();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Fetch Data Example'),
+        backgroundColor: const Color(0xFF161615),
+        centerTitle: true,
+        title: Text(
+          'Доставки',
+          style: kMainHeading.copyWith(color: Colors.white, fontSize: 20.0),
+        ),
       ),
       body: Center(
         child: Column(
           children: [
-            FutureBuilder<List<Delivery>>(
+            Expanded(
+              child: FutureBuilder<List<Delivery>>(
                 future: fetchDelivery(),
                 builder: (context, snapshot) {
-                  print(snapshot);
-                  if(snapshot.hasData || snapshot.connectionState == ConnectionState.done) {
-                    snapshot.data!.map((e) => Column(children: [
-                      Text('${e.id}'),
-                      Text('${e.amountOfSpaces}'),
-                      Text(e.organisation),
-                    ]));
+                  if (snapshot.hasData) {
+                    return ListView(
+                      shrinkWrap: true,
+                      children: [
+                        ...snapshot.requireData.map<Widget>(
+                          (e) => Column(
+                            children: [
+                              Text('Номер доставки: ${e.id}'),
+                              Text('Количество мест: ${e.amountOfSpaces}'),
+                              Text('Название огранизации: ${e.organisation}'),
+                            ],
+                          ),
+                        ),
+                      ],
+                    );
                   }
-                  return const CircularProgressIndicator();
-                })
+                  return CircularProgressIndicator();
+                },
+              ),
+            ),
           ],
         ),
       ),

@@ -17,6 +17,7 @@ class NewShipments extends StatefulWidget {
 class _NewShipmentsState extends State<NewShipments> {
   DateTime _dateTime = DateTime.now();
   String counterlabel = 'Document Count';
+
   @override
   Widget build(BuildContext context) {
     Size maxSize = MediaQuery.of(context).size;
@@ -116,11 +117,11 @@ class _NewShipmentsState extends State<NewShipments> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
-                          bottom: 20, left: 15, right: 15),
+                          bottom: 9.582857, left: 15, right: 15),
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Color.fromARGB(255, 209, 209, 209),
+                          color: const Color.fromARGB(255, 209, 209, 209),
                         ),
                         child: TimePickerSpinner(
                           spacing: 30,
@@ -136,8 +137,8 @@ class _NewShipmentsState extends State<NewShipments> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         primary: Colors.grey[850],
-                        padding:
-                        const EdgeInsets.symmetric(horizontal: 35, vertical: 15),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 35, vertical: 15),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),

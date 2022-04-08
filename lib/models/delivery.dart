@@ -13,7 +13,6 @@ class Delivery {
   });
 
   factory Delivery.fromJson(Map<String, dynamic> json) {
-    log('$json');
     return Delivery(
       id: json['id'],
       amountOfSpaces: json['amountOfSpaces'],
